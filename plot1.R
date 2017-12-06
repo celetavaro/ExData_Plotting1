@@ -1,16 +1,5 @@
 
 
-filename <- "household_power_consumption.txt"
-fileURL <- "https://d396qusza40orc.cloudfront.net/exdata%2Fdata%2Fhousehold_power_consumption.zip"
-zipFile <- "exdata%2Fdata%2Fhousehold_power_consumption.zip"
-
-    if(!file.exists(filename)){
-      
-      download.file(fileURL, filename, method = "curl")
-      unzip(zipFile)
-      
-    }
-
 pdata <- read.table("household_power_consumption.txt", sep = ";", na.strings = "?", header = TRUE)
 
 
@@ -25,6 +14,8 @@ pdata <- read.table("household_power_consumption.txt", sep = ";", na.strings = "
       rm(pdata)
     
 # generate the Histogram
-    par(mar = c(5.1, 4.1, 4.5, 2.1)) # extend top margin so export won't cut off upper limit of y-axis 
+    par(mar = c(5.1, 4.1, 4.5, 2.1)) # extend top margin so export won't cut off upper limit of y-axis
     
+    png("plot1.png", width = 480, height = 480)
     hist(testSet$Global_active_power, col = "red", xlab = "Global Active Power (kilowatts)", main = "Global Active Power")
+    dev.off()
