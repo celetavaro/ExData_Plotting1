@@ -11,3 +11,14 @@ testSet <- na.omit(testSet)
 rm(pdata)
 
 fixTime <- strptime(paste(testSet$Date, testSet$Time, sep = " "), "%Y-%m-%d %H:%M:%S")
+
+par(mfcol = c(2,2), mar = c(4,4,4,0))
+
+plot(fixTime, gap, xlab = "", ylab = "Global Active Power (kilowatts)", type = "l")
+
+plot(fixTime, testSet$Sub_metering_1, xlab = "", ylab = "Energy Sub Metering", type = "l")
+lines(fixTime, testSet$Sub_metering_2, type = "l", col = "red")
+lines(fixTime, testSet$Sub_metering_3, type = "l", col = "blue")
+legend("topright", c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"), lty = 1,  
+       col = c("black", "red", "blue"), cex = 0.35)
+
